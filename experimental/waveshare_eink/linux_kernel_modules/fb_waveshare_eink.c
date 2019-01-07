@@ -253,7 +253,7 @@ static int display_frame(struct ws_eink_fb_par *par)
 	int ret;
 	const u8 data_display_update_control_2[] = { 0xC4 };
 	ret = ws_eink_send_cmd(par, WS_DISPLAY_UPDATE_CONTROL_2,
-			       data_display_update_control_2,
+			      	data_display_update_control_2,
 			       sizeof(data_display_update_control_2));
 	if (ret)
 		return ret;
@@ -277,21 +277,21 @@ static int ws_eink_init_display(struct ws_eink_fb_par *par)
 	struct device *dev = &par->spi->dev;
 	
 	ret = devm_gpio_request_one(&par->spi->dev, par->rst,
-								GPIOF_OUT_INIT_LOW, "ws_eink_rst");
+                                GPIOF_OUT_INIT_LOW, "ws_eink_rst");
 	if (ret) {
 		dev_err(dev, "Couldn't request reset GPIO\n");
 		return ret;
 	}
 
 	ret = devm_gpio_request_one(&par->spi->dev, par->dc,
-								GPIOF_OUT_INIT_LOW, "ws_eink_dc");
+                                GPIOF_OUT_INIT_LOW, "ws_eink_dc");
 	if (ret) {
 		dev_err(dev, "Couldn't request data/command GPIO\n");
 		return ret;
 	}
 
 	ret = devm_gpio_request_one(&par->spi->dev, par->busy,
-								GPIOF_IN, "ws_eink_busy");
+                                GPIOF_IN, "ws_eink_busy");
 	if (ret) {
 		dev_err(dev, "Couldn't request busy GPIO\n");
 		return ret;
