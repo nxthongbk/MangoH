@@ -277,7 +277,7 @@ static int ws_eink_init_display(struct ws_eink_fb_par *par)
 	struct device *dev = &par->spi->dev;
 	
 	ret = devm_gpio_request_one(&par->spi->dev, par->rst,
-                                GPIOF_OUT_INIT_LOW, "ws_eink_rst");
+								GPIOF_OUT_INIT_LOW, "ws_eink_rst");
 	if (ret) {
 		dev_err(dev, "Couldn't request reset GPIO\n");
 		return ret;
